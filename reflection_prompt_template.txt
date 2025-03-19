@@ -1,0 +1,73 @@
+You are analyzing conversations to create memories that will help guide future interactions. Your task is to extract key elements that would be most helpful when encountering similar discussions in the future.
+
+Review the conversation and create a memory reflection following these rules:
+
+1. For any field where you don't have enough information or the field isn't relevant, use "N/A".
+2. Be extremely concise - each string should be one clear, actionable sentence.
+3. Focus only on information that would be useful for handling similar future conversations.
+4. Context_tags should be specific enough to match similar situations but general enough to be reusable.
+5. If a conversation contains a crucial piece of knowledge that does not fit the other categories, store it in "key_insights".
+6. Assign a priority level ("low", "medium", or "high") to indicate the importance of this memory for future interactions.
+
+Output valid JSON in exactly this format:
+{{
+    "context_tags": [                      // 2-4 keywords that would help identify similar future conversations
+        string,                            // Use descriptive terms like "memory_leak_fix", "REST_API_authentication_error", "CNN_hyperparameter_tuning"
+        ...
+    ],
+    "conversation_summary": string,        // One sentence describing what the conversation accomplished
+    "what_worked": string,                 // Most effective approach or strategy used in this conversation
+    "what_to_avoid": string                // Most important pitfall or ineffective approach to avoid
+    "key_insights": string,                // Crucial information learned
+    "priority": "low" | "medium" | "high"  // Importance of this memory for future interactions
+}}
+
+Examples:
+- Good context_tags: ["CNN_hyperparameter_tuning", "bias_in_dataset", "transfer_learning_best_practices"]
+- Bad context_tags: ["conversation", "general_topic", "discussion"]
+
+- Good conversation_summary: "Identified a root cause for the API failure and provided a step-by-step fix."
+- Bad conversation_summary: "Talked about an API issue."
+
+- Good what_worked: "Using real-world analogies to explain complex debugging strategies."
+- Bad what_worked: "Explained the issue well."
+
+- Good what_to_avoid: "Jumping into solutions without first clarifying the exact error message."
+- Bad what_to_avoid: "Used technical language."
+
+- Good key_insights: "A common cause of database slowdowns is missing indexes on frequently queried columns."
+- Bad key_insights: "Databases are sometimes slow."
+
+- Priority examples:
+  - "low": Routine conversation, unlikely to be critical.
+  - "medium": Some useful insights that might be helpful in future cases.
+  - "high": Critical knowledge, should be prioritized when retrieving memories.
+
+Additional examples for different contexts:
+
+Context tags examples:
+- ["memory_leak_fix", "performance_bottleneck", "race_condition_debugging"]
+- ["REST_API_authentication_error", "frontend_performance_optimization", "state_management_in_react"]
+- ["OAuth_login_issue", "multi_factor_authentication_setup", "database_connection_failure"]
+
+Conversation summary examples:
+- "Helped refine a feature request by clarifying pain points and expected outcomes."
+- "Resolved a performance bottleneck by identifying inefficient database queries."
+
+What worked examples:
+- "Breaking down the issue into smaller, more manageable steps before troubleshooting."
+- "Framing the conversation in terms of the user's priorities and concerns."
+
+What to avoid examples:
+- "Making assumptions about the user's technical knowledge without first assessing it."
+- "Focusing too much on theoretical concepts instead of providing actionable steps."
+
+Key insights:
+- "Users often struggle with multi-factor authentication setup; clearer onboarding instructions are needed."
+- "A common cause of login failures is incorrect system time settings affecting token validation."
+
+Do not include any text outside the JSON object in your response.
+
+Here is the prior conversation:
+
+{conversation}
