@@ -1,7 +1,6 @@
-from transformers import pipeline
-import torch
 import json
-from sentence_transformers import SentenceTransformer
+from transformers import pipeline
+
 
 def load_model(model_id, device):
     return pipeline("text-generation", model=model_id, device=device)
@@ -22,35 +21,51 @@ def format_conversation(messages):
     return "\n".join(conversation)
 
 
-def run_chat(llm):
-    system_prompt = format_message(
-            "You are a helpful AI Assistant. Answer the User's queries succinctly in one sentence.",
-            is_user=False
-        )
+def run_chat(llm, db, reflect, episodic_mode=False):
+    print("\nSTARTING CONVERSATION")
+    print(f"EPISODIC MODE: {str(episodic_mode).upper()}")
 
-    messages = [system_prompt]
-            
-    while True:   
+    default_system_prompt = format_message(
+        "You are a helpful AI Assistant. Answer the User's queries succinctly in one sentence.",
+        is_user=False
+    )
+
+    memory = {
+        "prev_convs": [],
+        "what_worked": set(),
+        "what_to_avoid": set(),
+        "key_insights": set()
+    }
+
+    messages = [default_system_prompt]
+    while True:
         user_input = input("\nuser: ").strip()
-        print(f"{user_input}")
         if user_input.lower() == "exit":
             break
 
         user_message = format_message(user_input, is_user=True)
         messages.append(user_message)
 
-        # Generate response
+        if episodic_mode:
+            system_prompt = episodic_system_prompt(user_input, memory, db) or default_system_prompt
+            messages = [system_prompt] + messages[1:]            
+
         response_data = llm(messages, max_new_tokens=100)[0]["generated_text"]
-        # Ensure response is properly formatted
         assistant_response = response_data[-1]["content"]
+        messages.append(format_message(assistant_response))
 
         print("\nassistant:", assistant_response)
 
-        # Append response to conversation
-        messages.append(format_message(assistant_response))
-
     print("ENDING CONVERSATION")
-    return format_conversation(messages)
+
+    conversation = format_conversation(messages)
+    if episodic_mode:
+        add_episodic_memory(reflect, conversation, db)
+        print("MEMORY SAVED")
+    return conversation, messages
+
+
+######################################################################
 
 
 def create_reflection_pipeline(prompt_template_path, llm):
@@ -64,56 +79,22 @@ def create_reflection_pipeline(prompt_template_path, llm):
     }], max_new_tokens=100)[0]["generated_text"][-1]["content"])
 
 
-def add_episodic_memory(reflect, conversation, db, embedding_model):
+def add_episodic_memory(reflect, conversation, db):
     reflection = reflect(conversation)
-    
-    data = {
+    db.insert({
         "conversation": conversation,
         **reflection
-    }
-
-    # Generate embedding from conversation summary (or full conversation)
-    vector = embedding_model.encode(data["conversation_summary"])
-    
-    # Store in ChromaDB
-    db.add(
-        ids=[conversation[:10]],  # Unique ID (first 10 chars as an example)
-        embeddings=[vector],  # Store vector representation
-        metadatas=[data]  # Store metadata
-    )
-    
-    print("Memory added successfully!")
+    })
 
 
-def episodic_recall(query, db, embedding_model, top_k=3):
-    """Retrieves the most relevant episodic memories based on a query."""
-    
-    # Generate query embedding
-    query_vector = embedding_model.encode(query).tolist()
-
-    # Perform similarity search
-    results = db.query(
-        query_embeddings=[query_vector],
-        n_results=top_k  # Retrieve top K relevant memories
-    )
-
-    # Format and return results
-    retrieved_memories = []
-    for i in range(len(results["ids"][0])):
-        retrieved_memories.append({
-            "conversation": results["metadatas"][0][i]["conversation"],
-            "context_tags": results["metadatas"][0][i]["context_tags"],
-            "conversation_summary": results["metadatas"][0][i]["conversation_summary"],
-            "what_worked": results["metadatas"][0][i]["what_worked"],
-            "what_to_avoid": results["metadatas"][0][i]["what_to_avoid"],
-            "key_insights": results["metadatas"][0][i]["key_insights"],
-        })
-
-    return retrieved_memories
+def episodic_recall(query, db):
+    return db.query(query)
 
 
 def episodic_system_prompt(query, memory, db):
-    data = episodic_recall(query, memory, db)
+    data = episodic_recall(query, db)
+    if not data: return None
+
     curr_conv = data["conversation"]
 
     if curr_conv not in memory["prev_convs"]:
@@ -129,7 +110,7 @@ def episodic_system_prompt(query, memory, db):
     You recall similar conversations with the user, here are the details:
 
     Current Conversation Match: {curr_conv}
-    Previous Conversations: {' | '.join(memory['prev_convs'][:3])}
+    Previous Conversations: {' | '.join(memory['prev_convs'][:-1])}
     What has worked well: {'. '.join(memory['what_worked'])}
     What to avoid: {'. '.join(memory['what_to_avoid'])}
     Key insights: {'. '.join(memory['key_insights'])}

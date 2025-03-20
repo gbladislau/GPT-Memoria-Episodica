@@ -1,27 +1,14 @@
 import torch
-import utils as ut
-import chromadb
-from sentence_transformers import SentenceTransformer
+import source.system as ss
+from source.db import ChromaDB
+
 
 if __name__ == "__main__":
-    ## LLM
     device = torch.device("cuda:2" if torch.cuda.is_available() else "cpu")
-    llm = ut.load_model("hugging-quants/Meta-Llama-3.1-8B-Instruct-AWQ-INT4", device)
-    ## DB
-    client = chromadb.PersistentClient(path="./chroma_db")
-    collection = client.get_or_create_collection(name="episodic_memory")
-    # EMBEDDING MODEL
-    embedding_model = SentenceTransformer("all-MiniLM-L6-v2")
-    
-    #REFLECTION PIPEL
-    reflect = ut.create_reflection_pipeline("reflection_prompt_template.txt", llm)
+    llm = ss.load_model("hugging-quants/Meta-Llama-3.1-70B-Instruct-AWQ-INT4", device)
+    db = ChromaDB("./chroma_db", "episodic_memory", "all-MiniLM-L6-v2")
+    reflect = ss.create_reflection_pipeline("reflection_prompt_template.txt", llm)
 
-    # Talk and then reflect
-    conversation = ut.run_chat(llm)
-    reflection = reflect(conversation)
-    print(reflection)
-    
-    # Add reflection to the db
-    ut.add_episodic_memory(reflect, conversation, collection, embedding_model)
+    conversation, messages = ss.run_chat(llm, db, reflect, True)
 
-    print(f"\n{reflection}\n\n{conversation}")
+    print(f"\n{messages}\n\n{conversation}")
