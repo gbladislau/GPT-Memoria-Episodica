@@ -6,4 +6,7 @@ if __name__ == "__main__":
     llm = ut.load_model("hugging-quants/Meta-Llama-3.1-70B-Instruct-AWQ-INT4", device)
     reflect = ut.create_reflection_pipeline("reflection_prompt_template.txt", llm)
 
-    print(ut.run_chat(llm))
+    conversation = ut.run_chat(llm)
+    reflection = reflect(conversation)
+
+    print(f"\n{reflection}\n\n{conversation}")

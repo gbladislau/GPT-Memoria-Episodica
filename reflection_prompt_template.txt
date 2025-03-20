@@ -7,7 +7,6 @@ Review the conversation and create a memory reflection following these rules:
 3. Focus only on information that would be useful for handling similar future conversations.
 4. Context_tags should be specific enough to match similar situations but general enough to be reusable.
 5. If a conversation contains a crucial piece of knowledge that does not fit the other categories, store it in "key_insights".
-6. Assign a priority level ("low", "medium", or "high") to indicate the importance of this memory for future interactions.
 
 Output valid JSON in exactly this format:
 {{
@@ -19,7 +18,6 @@ Output valid JSON in exactly this format:
     "what_worked": string,                 // Most effective approach or strategy used in this conversation
     "what_to_avoid": string                // Most important pitfall or ineffective approach to avoid
     "key_insights": string,                // Crucial information learned
-    "priority": "low" | "medium" | "high"  // Importance of this memory for future interactions
 }}
 
 Examples:
@@ -37,11 +35,6 @@ Examples:
 
 - Good key_insights: "A common cause of database slowdowns is missing indexes on frequently queried columns."
 - Bad key_insights: "Databases are sometimes slow."
-
-- Priority examples:
-  - "low": Routine conversation, unlikely to be critical.
-  - "medium": Some useful insights that might be helpful in future cases.
-  - "high": Critical knowledge, should be prioritized when retrieving memories.
 
 Additional examples for different contexts:
 
