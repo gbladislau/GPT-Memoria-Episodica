@@ -1,0 +1,6 @@
+chromadb==0.6.3
+datasets==3.4.1
+scikit_learn==1.6.1
+sentence_transformers==3.4.1
+torch==2.6.0
+transformers==4.47.1
