@@ -1,15 +1,18 @@
 from transformers import pipeline
 import torch
 import json
+from sentence_transformers import SentenceTransformer
 
 def load_model(model_id, device):
     return pipeline("text-generation", model=model_id, device=device)
+
 
 def format_message(query, is_user=False):
     return {
         "role": "user" if is_user else "assistant",
         "content": query
     }
+
 
 def format_conversation(messages):
     conversation = []
@@ -18,25 +21,37 @@ def format_conversation(messages):
     
     return "\n".join(conversation)
 
+
 def run_chat(llm):
     system_prompt = format_message(
-        "You are a helpful AI Assistant. Answer the User's queries succinctly in one sentence.",
-        is_user=False
-    )
+            "You are a helpful AI Assistant. Answer the User's queries succinctly in one sentence.",
+            is_user=False
+        )
 
     messages = [system_prompt]
-    while True:
+            
+    while True:   
+        user_input = input("\nuser: ").strip()
+        print(f"{user_input}")
+        if user_input.lower() == "exit":
+            break
 
-        user_message = format_message(input("\nuser: "), is_user=True)
+        user_message = format_message(user_input, is_user=True)
+        messages.append(user_message)
 
-        if user_message["content"].lower() == "exit": break
-        else: messages.append(user_message)
+        # Generate response
+        response_data = llm(messages, max_new_tokens=100)[0]["generated_text"]
+        # Ensure response is properly formatted
+        assistant_response = response_data[-1]["content"]
 
-        messages = llm(messages)[0]["generated_text"]
-        response = messages[-1]["content"]
-        print("\nassistant: ", response)
+        print("\nassistant:", assistant_response)
 
+        # Append response to conversation
+        messages.append(format_message(assistant_response))
+
+    print("ENDING CONVERSATION")
     return format_conversation(messages)
+
 
 def create_reflection_pipeline(prompt_template_path, llm):
     prompt_template = ""
@@ -48,34 +63,54 @@ def create_reflection_pipeline(prompt_template_path, llm):
         "content": prompt_template.format(conversation=conversation)
     }], max_new_tokens=100)[0]["generated_text"][-1]["content"])
 
-def add_episodic_memory(reflect, conversation, db):
+
+def add_episodic_memory(reflect, conversation, db, embedding_model):
     reflection = reflect(conversation)
+    
     data = {
         "conversation": conversation,
         **reflection
     }
 
-    # TODO: salvar no db
-    # {{
-    #     "conversation": string,
-    #     "context_tags": [string, string, string],
-    #     "conversation_summary": string,
-    #     "what_worked": string,
-    #     "what_to_avoid": string
-    #     "key_insights": string
-    # }}
+    # Generate embedding from conversation summary (or full conversation)
+    vector = embedding_model.encode(data["conversation_summary"])
+    
+    # Store in ChromaDB
+    db.add(
+        ids=[conversation[:10]],  # Unique ID (first 10 chars as an example)
+        embeddings=[vector],  # Store vector representation
+        metadatas=[data]  # Store metadata
+    )
+    
+    print("Memory added successfully!")
 
-def episodic_recall(query, db):
-    # TODO: recuperar do db a partir da query
-    # {{
-    #     "conversation": string,
-    #     "context_tags": [string, string, string],
-    #     "conversation_summary": string,
-    #     "what_worked": string,
-    #     "what_to_avoid": string
-    #     "key_insights": string
-    # }}
-    pass
+
+def episodic_recall(query, db, embedding_model, top_k=3):
+    """Retrieves the most relevant episodic memories based on a query."""
+    
+    # Generate query embedding
+    query_vector = embedding_model.encode(query).tolist()
+
+    # Perform similarity search
+    results = db.query(
+        query_embeddings=[query_vector],
+        n_results=top_k  # Retrieve top K relevant memories
+    )
+
+    # Format and return results
+    retrieved_memories = []
+    for i in range(len(results["ids"][0])):
+        retrieved_memories.append({
+            "conversation": results["metadatas"][0][i]["conversation"],
+            "context_tags": results["metadatas"][0][i]["context_tags"],
+            "conversation_summary": results["metadatas"][0][i]["conversation_summary"],
+            "what_worked": results["metadatas"][0][i]["what_worked"],
+            "what_to_avoid": results["metadatas"][0][i]["what_to_avoid"],
+            "key_insights": results["metadatas"][0][i]["key_insights"],
+        })
+
+    return retrieved_memories
+
 
 def episodic_system_prompt(query, memory, db):
     data = episodic_recall(query, memory, db)
