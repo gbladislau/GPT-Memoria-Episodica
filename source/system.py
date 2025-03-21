@@ -132,8 +132,9 @@ def run_inference(llm, db, reflect, dataset):
 
     result = {"non_episodic": [], "episodic": [], "answers": answers}
 
+    prompt = "I'm going to tell you some facts. Just listen and take note, without interpreting or drawing any conclusions. Here we go:\n\n"
     for context in tqdm(contexts, desc="[ contexts ]"):
-        messages = run_chat(llm, db, reflect, episodic_mode=True, user_inputs=iter((context, "exit")), verbose=False)
+        messages = run_chat(llm, db, reflect, episodic_mode=True, user_inputs=iter((prompt + context, "exit")), verbose=False)
 
     for question in tqdm(questions, desc="[ questions ]"):
         for label, value in [("non_episodic", False), ("episodic", True)]:
