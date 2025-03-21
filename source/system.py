@@ -1,5 +1,7 @@
 import json
 from transformers import pipeline
+from utils import print_log
+from tqdm import tqdm
 
 
 def load_model(model_id, device):
@@ -21,9 +23,9 @@ def format_conversation(messages):
     return "\n".join(conversation)
 
 
-def run_chat(llm, db, reflect, episodic_mode=False):
-    print("\nSTARTING CONVERSATION")
-    print(f"EPISODIC MODE: {str(episodic_mode).upper()}")
+def run_chat(llm, db, reflect, episodic_mode=False, user_inputs=None, verbose=False):
+    print_log(verbose, "\nSTARTING CONVERSATION")
+    print_log(verbose, f"EPISODIC MODE: {str(episodic_mode).upper()}")
 
     default_system_prompt = format_message(
         "You are a helpful AI Assistant. Answer the User's queries succinctly in one sentence.",
@@ -39,8 +41,15 @@ def run_chat(llm, db, reflect, episodic_mode=False):
 
     messages = [default_system_prompt]
     while True:
-        user_input = input("\nuser: ").strip()
+        user_input = (user_inputs and next(user_inputs)) or input("\nuser: ").strip()
+
         if user_input.lower() == "exit":
+            conversation = format_conversation(messages)
+            add_episodic_memory(reflect, conversation, db)
+            print_log(verbose, "MEMORY SAVED")
+            break
+
+        if user_input.lower() == "exit_quiet":
             break
 
         user_message = format_message(user_input, is_user=True)
@@ -50,19 +59,14 @@ def run_chat(llm, db, reflect, episodic_mode=False):
             system_prompt = episodic_system_prompt(user_input, memory, db) or default_system_prompt
             messages = [system_prompt] + messages[1:]            
 
-        response_data = llm(messages, max_new_tokens=100)[0]["generated_text"]
+        response_data = llm(messages, max_new_tokens=300)[0]["generated_text"]
         assistant_response = response_data[-1]["content"]
         messages.append(format_message(assistant_response))
 
-        print("\nassistant:", assistant_response)
+        print_log(verbose, "\nassistant:", assistant_response)
 
-    print("ENDING CONVERSATION")
-
-    conversation = format_conversation(messages)
-    if episodic_mode:
-        add_episodic_memory(reflect, conversation, db)
-        print("MEMORY SAVED")
-    return conversation, messages
+    print_log(verbose, "ENDING CONVERSATION")
+    return messages
 
 
 ######################################################################
@@ -76,7 +80,7 @@ def create_reflection_pipeline(prompt_template_path, llm):
     return lambda conversation: json.loads(llm([{
         "role": "user",
         "content": prompt_template.format(conversation=conversation)
-    }], max_new_tokens=100)[0]["generated_text"][-1]["content"])
+    }], max_new_tokens=300)[0]["generated_text"][-1]["content"])
 
 
 def add_episodic_memory(reflect, conversation, db):
@@ -118,3 +122,22 @@ def episodic_system_prompt(query, memory, db):
     Use these memories as context for your response to the user."""
     
     return format_message(episodic_prompt, is_user=False)
+
+
+######################################################################
+
+
+def run_inference(llm, db, reflect, dataset):
+    contexts, questions, answers = list(zip(*dataset))
+
+    result = {"non_episodic": [], "episodic": [], "answers": answers}
+
+    for context in tqdm(contexts, desc="[ contexts ]"):
+        messages = run_chat(llm, db, reflect, episodic_mode=True, user_inputs=iter((context, "exit")), verbose=False)
+
+    for question in tqdm(questions, desc="[ questions ]"):
+        for label, value in [("non_episodic", False), ("episodic", True)]:
+            messages = run_chat(llm, db, reflect, episodic_mode=value, user_inputs=iter((question, "exit_quiet")), verbose=False)
+            result[label].append(messages[-1]["content"])
+
+    return result
