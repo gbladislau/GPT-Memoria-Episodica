@@ -17,7 +17,7 @@ The episodic memory system is built using **ChromaDB** as a database for storing
 - **ChromaDB** – for storing episodic memory
 - **PyTorch** – for working with LLMs
 - **Sentence-BERT (SBERT)** – for evaluating generated answers
-- **TriviaQA** – as an optional dataset for testing
+- **NarrativeQA** – as an optional dataset for testing
 
 ## 🚀 How to Use
 1. **Clone the repository:**
@@ -30,7 +30,9 @@ The episodic memory system is built using **ChromaDB** as a database for storing
    pip install -r requirements.txt
    ```
 3. **Prepare your dataset:**
-   - You can use your own dataset or **TriviaQA**.
+   - You can use your own dataset or **NarrativeQA**.
+   - NarrativeQA is available on HuggingFaces at: 
+     https://huggingface.co/datasets/deepmind/narrativeqa
 4. **Run the LLM with episodic memory:**
    ```bash
    python app.py
