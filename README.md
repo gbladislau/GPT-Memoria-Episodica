@@ -2,7 +2,7 @@
 
 ## 👨‍💻 Developers
 - Gabriel Braga Ladislau
-- Guilherme Silveira Gomes Brotto 
+- Guilherme Silveira Gomes Brotto
 - Marlon Moratti de Amaral  
 
 ## 🎯 Objective
@@ -25,21 +25,59 @@ The episodic memory system is built using **ChromaDB** as a database for storing
    git clone <repository-url>
    cd <repository-folder>
    ```
-2. **Install dependencies:**
+2. **Install dependencies in a Virtual Enviroment:**
    ```bash
+   python3 -m venv vevn
+   source venv/bin/activate
    pip install -r requirements.txt
    ```
 3. **Prepare your dataset:**
    - You can use your own dataset or **NarrativeQA**.
-   - NarrativeQA is available on HuggingFaces at: 
+   - NarrativeQA is fully available on HuggingFaces at:
      https://huggingface.co/datasets/deepmind/narrativeqa
 4. **Run the LLM with episodic memory:**
    ```bash
    python app.py
    ```
-5. **Evaluate the results:**
-   ```bash
-   python evaluate.py
-   ```
+   
+### 📊 Evaluation Script
+The evaluation script (`evaluate.py`) includes several command-line options:
 
-### You can check our paper: 
+```text
+usage: evaluate.py [-h] [--plot] [--dont_rerun] [--gen_prompt] [--result RESULT] [--prompt PROMPT]
+
+Run the evaluation module to calculate the LLMs results
+
+options:
+  -h, --help       show this help message and exit
+  --plot, -p       Generate plot for quantitativeanalysis
+  --dont_rerun     Use the mem.npy and no_mem.npyscores previously calculated
+  --gen_prompt     Generate qualitative prompt
+  --result RESULT  LLM anwsers results input file path (json)
+  --prompt PROMPT  Prompt file output path
+```
+
+#### Arguments Explained:
+- `--plot, -p`: Generates a boxplot comparing the similarity scores of the memory-enabled and memoryless models.
+- `--dont_rerun`: Uses precomputed scores stored in `mem.npy` and `no_mem.npy` instead of recalculating them.
+- `--gen_prompt`: Generates a qualitative prompt for evaluation.
+- `--result`: Specifies the path to the JSON file containing both LLM generated anwsers (default: `results/results.json`).
+- `--prompt`: Specifies the output path for the qualitative prompt file (default: `prompts/evaluation_prompt.txt`).
+
+To run the evaluation with a plot:
+```bash
+python evaluate.py --plot
+```
+
+To use previously calculated scores:
+```bash
+python evaluate.py --dont_rerun
+```
+
+To generate a qualitative prompt:
+```bash
+python evaluate.py --gen_prompt
+```
+
+### You can check our paper:
+

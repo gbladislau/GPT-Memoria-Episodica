@@ -1,9 +1,8 @@
 import torch
 import source.system as ss
-from fact_extraction import getDataLoader
 from source.db import ChromaDB
 from source.dataset import load_dataset
-from utils import save_results
+from source.utils import save_results
 
 
 if __name__ == "__main__":
@@ -12,9 +11,9 @@ if __name__ == "__main__":
     db = ChromaDB("./chroma_db", "episodic_memory", "all-mpnet-base-v2")
     reflect = ss.create_reflection_pipeline("reflection_prompt_template.txt", llm)
 
-    # print(ss.run_chat(llm, db, reflect, episodic_mode=False, verbose=True))
+    print(ss.run_chat(llm, db, reflect, episodic_mode=True, verbose=True))
 
     dataset = load_dataset(50)
     results = ss.run_inference(llm, db, reflect, dataset)
 
-    save_results("results.json", results)
+    save_results("results/new_results.json", results)
