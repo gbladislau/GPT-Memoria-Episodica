@@ -16,7 +16,7 @@ def _get_similarity_score(model, true_answer, ai_answers):
 
 def _score(model, true_answer, ai_answers):
     sim = _get_similarity_score(model, true_answer, ai_answers)
-    return max(sim)
+    return sim.mean()
 
 def get_all_scores(data_answers, ai_all_answers):
     model = SentenceTransformer("all-MiniLM-L6-v2")
@@ -28,22 +28,43 @@ def get_all_scores(data_answers, ai_all_answers):
     scores = np.zeros(num_samples)
     for i in range(num_samples):
         s = _score(model, data_answers[i], ai_all_answers[i])
-        scores[i] = s[0]
+        scores[i] = s
         
     return scores
 
-def gen_evaluation(results_path='./results.json'):
+def gen_quantitative_evaluation(results_path='./results.json', rerun=True):
     
     with open(results_path) as f:
         results_dict = json.load(f)
-   
-    no_memory_scores = ev.get_all_scores(results_dict["answers"], results_dict["non_episodic"])
-    memory_scores = ev.get_all_scores(results_dict["answers"], results_dict["episodic"])
     
-    
-    print(f"No memory mean: {no_memory_scores.mean()} std: {no_memory_scores.std()}")
-    print(f"Memory mean: {memory_scores.mean()}, std: {memory_scores.std()}")
-    print(f"Percentage of improvment: {(memory_scores.mean()/no_memory_scores.mean())*100}")
+    if rerun:
+        no_memory_scores = ev.get_all_scores(results_dict["answers"], results_dict["non_episodic"])
+        memory_scores = ev.get_all_scores(results_dict["answers"], results_dict["episodic"])
+        
+        print(f"No memory mean: {no_memory_scores.mean()} std: {no_memory_scores.std()}")
+        print(f"Memory mean: {memory_scores.mean()}, std: {memory_scores.std()}")
+        print(f"Percentage of improvment: {(memory_scores.mean()/no_memory_scores.mean())*100}")
+        
+        np.save("mem.npy", memory_scores)
+        np.save("no_mem.npy", no_memory_scores)
+    else:
+        no_memory_scores = np.load("no_mem.npy")
+        memory_scores = np.load("mem.npy")
+        
+    import matplotlib.pyplot as plt
+    import seaborn as sns
+    sns.set_theme(style="whitegrid") 
+
+    plt.figure(figsize=(8, 6))
+    sns.boxplot([no_memory_scores, memory_scores], patch_artist=True)
+    plt.xticks([0,1], ["Memoryless", "Memory"])
+    plt.tight_layout(pad=2)
+    plt.ylim([0,1])
+    plt.grid()
+    plt.ylabel("Similarity Score")
+    plt.title("Comparison of Scores with and without Memory")
+    plt.savefig("boxplot.png")  # Save the figure
+    plt.show()
         
 
 if __name__ == "__main__":
@@ -55,8 +76,7 @@ if __name__ == "__main__":
     # scores = get_all_scores(true_answer, ai_answers)
 
     # print(scores)
-    gen_evaluation()
-
+    gen_quantitative_evaluation()
 
 
         
