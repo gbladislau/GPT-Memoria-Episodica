@@ -350,3 +350,12 @@ Expected possible answers:
 Answers from model 1: In many cultures, kings and pharaohs are often believed to be of divine antecedents.
 Answers from model 2: Thiodolf, the Wolfing war leader, is believed to be of mysterious and perhaps divine antecedents.
 
+Give me an analysis based on 5 criterias: 
+                1. **Accuracy & Performance** - How well does each model's answer match the ground truth? Is the information presented correctly and fully?
+                2. **Consistency** - Are the answers provided by each model consistent when given similar inputs or prompts?
+                3. **Contextual Relevance** - Does the model's answer remain relevant to the context of the question or task? Does the memory-enabled model show better contextual understanding due to its ability to remember past information?
+                4. **Logical Coherence** - Is the reasoning behind the model's answer logically structured and sound? How well does each model handle complex reasoning tasks?
+                5. **Generalization** - How well do the models handle out-of-distribution data or novel questions that were not part of the training set?
+    
+
+            

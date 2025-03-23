@@ -1,5 +1,5 @@
-# from datasets import load_dataset
-# from evaluate import get_all_scores
+from datasets import load_dataset
+from evaluate import get_all_scores
 import json
 
 def saveAsJSON(dataset_path, num_samples):
@@ -48,7 +48,15 @@ def generate_evaluation_prompt(json_file, save_prompt_path):
             f"Answers from model 1: {non_epi}\n"
             f"Answers from model 2: {epi}\n\n"
         )
+    prompt+= """Give me an analysis based on 5 criterias: 
+                1. **Accuracy & Performance** - How well does each model's answer match the ground truth? Is the information presented correctly and fully?
+                2. **Consistency** - Are the answers provided by each model consistent when given similar inputs or prompts?
+                3. **Contextual Relevance** - Does the model's answer remain relevant to the context of the question or task? Does the memory-enabled model show better contextual understanding due to its ability to remember past information?
+                4. **Logical Coherence** - Is the reasoning behind the model's answer logically structured and sound? How well does each model handle complex reasoning tasks?
+                5. **Generalization** - How well do the models handle out-of-distribution data or novel questions that were not part of the training set?
     
+
+            """
     with open(save_prompt_path, "w", encoding="utf-8") as file:
         file.write(prompt)
     
