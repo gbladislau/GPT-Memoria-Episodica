@@ -1,0 +1,352 @@
+Hello chat, you will be my evaluator. I want you to compare the answers from two models and say which one better resembled the correct answers. For each answer, I will give you a list of possible correct answers, the answer from model 1, and the answer from model 2. You must say your decision and explain it briefly
+
+Answer 1:
+Expected possible answers:
+- Only himself.
+- only himself
+Answers from model 1: I'm not aware of any information about Tom or his patents, could you provide more context or details.
+Answers from model 2: According to the information provided, Tom wants to be the only one with access to his patents. He refuses to allow anyone else to have permissions to his patents, which is a point of contention with Shallock Peters, who tries to buy the rights to Tom's inventions.
+
+Answer 2:
+Expected possible answers:
+- That it is of no use.
+- He does not believe that it will work. 
+Answers from model 1: There's no information provided about Mr. Swift or Tom's idea, so I couldn't determine what Mr. Swift thinks.
+Answers from model 2: Mr. Swift, Tom's father, is adamant that Tom's idea of a photo telephone will not work.
+
+Answer 3:
+Expected possible answers:
+- A speeding motor boat.
+- Ned
+Answers from model 1: Spike the dog was almost run over along with Tom in the cartoon series Tom and Jerry.
+Answers from model 2: Ned was almost run over along with Tom by a speeding motor boat operated by Shallock Peters.
+
+Answer 4:
+Expected possible answers:
+- He gets angry.
+- mad
+Answers from model 1: I'm not aware of any information about a Mr. Peter's or his feelings towards Tom, as this appears to be a hypothetical or context-dependent scenario.
+Answers from model 2: According to the facts, Mr. Peters is infuriated that Tom refuses to allow anyone other than himself permissions to his patents.
+
+Answer 5:
+Expected possible answers:
+- Tom's photo telephone idea.
+- Tom's latest idea
+Answers from model 1: Tom and Mr. Swift argue over the invention of the photo-telephone.
+Answers from model 2: Tom and his father, Mr. Swift, argue over Tom's latest idea, a photo telephone. Mr. Swift thinks the idea won't work, but Tom is convinced it can be done, citing the recent news event where a photograph was transmitted over telegraph lines.
+
+Answer 6:
+Expected possible answers:
+- Mr. Peters doesn't want to admit to the running over accident.
+- Mr. Peters refuses to acknowledge the accident, and Tom refuses to relinquish his patents.
+Answers from model 1: I'm not aware of any information about Mr. Peters and Tom arguing, could you provide more context or details about the situation.
+Answers from model 2: According to the facts you provided, Mr. Peters and Tom argued because Mr. Peters was operating a speeding motor boat and nearly ran Tom and his friend Ned over. When Tom tried to confront him about the incident, Mr. Peters refused to acknowledge it, which led to animosity between the two. Additionally, Mr. Peters later tried to buy Tom's inventions under the guise of making a profit, but Tom refused to sell, which further infuriated Mr. Peters.
+
+Answer 7:
+Expected possible answers:
+- Reading a news event.
+- He read it in the news.
+Answers from model 1: I couldn't find any information about a person named Tom finding out about photos being transmitted over telegraph lines; however, Alexander Graham Bell and Samuel Morse did experiment with transmitting images over wires.
+Answers from model 2: According to the facts you provided earlier, Tom found out about photos being transmitted over telegraph lines by reading about a recent news event where a photograph was transmitted over telegraph lines.
+
+Answer 8:
+Expected possible answers:
+- Shallock Peters.
+- Shallock Peters
+Answers from model 1: The speeding motor boat is typically operated by a driver or a pilot, often referred to as a boat operator or a helmsman.
+Answers from model 2: Shallock Peters, a con-artist, operates the speeding motor boat.
+
+Answer 9:
+Expected possible answers:
+- Tom's inventions.
+- some of his inventions
+Answers from model 1: I'm not aware of any information about Mr. Peters and Tom, could you provide more context or clarify who they are.
+Answers from model 2: According to the notes I took, Mr. Peters tried to buy Tom out of some of his inventions, under the guise of making a profit.
+
+Answer 10:
+Expected possible answers:
+- Mr. Damon.
+- Mr. Damon
+Answers from model 1: I'm not aware of any specific individual's financial situation, but I can suggest some high-profile examples such as Sri Lanka, which has been facing a severe economic crisis.
+Answers from model 2: Mr. Damon, Tom's good friend, is having serious financial troubles.
+
+Answer 11:
+Expected possible answers:
+- A photo telephone
+- photo telephone
+Answers from model 1: I'm not aware of any information about Tom or his ideas, could you provide more context?
+Answers from model 2: Tom's latest idea is a photo telephone.
+
+Answer 12:
+Expected possible answers:
+- Photos can be sent via telegraph, and the wires for a telephone are the same as the wires for a telegraph.
+- There isn't much difference between telephone and telegraph wires
+Answers from model 1: Tom believes the photo telephone will work because he thinks that the human eye can transmit images over wires.
+Answers from model 2: Tom believes the photo telephone will work because he read about a recent news event where a photograph was transmitted over telegraph lines. He thinks there is no functional difference between the wires used for a telephone and those used in telegraphs, which gives him confidence that his idea can be successful.
+
+Answer 13:
+Expected possible answers:
+- He is a con-man determined to steal Tom's ideas.
+- con artist
+Answers from model 1: I couldn't find any information on a person named Shallock Peters.
+Answers from model 2: I don't have any information about Shallock Peters from the context of our current conversation. The information provided earlier was about "The House of the Wolfings" by William Morris. If you'd like to share more about Shallock Peters, I'd be happy to take note.
+
+Answer 14:
+Expected possible answers:
+- He almost runs Tom and Ned over with a speedboat.
+- By nearly running him over with a boat. 
+Answers from model 1: Mr. Peters attempts to scare Tom by telling him a spooky story about a ghostly figure in the old house.
+Answers from model 2: I recall that Mr. Peters attempts to scare Tom by trying to run him and Ned over with his speeding motorboat, and also by trying to intimidate Tom into selling him his inventions.
+
+Answer 15:
+Expected possible answers:
+- Mr. Peters keeps trying to buy Tom's ideas.
+- He almost runs him over, but won't admit it
+Answers from model 1: I don't have any information about Tom or Mr. Peters, so I couldn't determine the reason for Tom's hatred.
+Answers from model 2: Tom doesn't necessarily "hate" Mr. Peters, but he strongly dislikes him. The animosity between them started when Mr. Peters refused to acknowledge the accident where Tom and Ned were almost run over by his speeding motor boat. The tension escalated when Mr. Peters tried to buy Tom's inventions, but Tom refused to sell, which infuriated Mr. Peters.
+
+Answer 16:
+Expected possible answers:
+- Because Tom refuses to sell his ideas to him.
+- He won't sell him interest in his inventions
+Answers from model 1: I'm not aware of any information about Mr. Peters or Tom, could you please provide more context about the situation.
+Answers from model 2: Mr. Peters is angry with Tom because Tom refused to sell him the rights to some of his inventions. Mr. Peters wanted to buy the patents from Tom, supposedly to make a profit, but Tom wouldn't allow it, insisting on keeping control of his inventions himself. This refusal infuriated Mr. Peters. Additionally, their initial encounter where Mr. Peters was involved in a motor boat accident and refused to acknowledge it, also contributed to the animosity between them.
+
+Answer 17:
+Expected possible answers:
+- Mr. Damon is having financial difficulties.
+- That he's having financial troubles.
+Answers from model 1: I'm not given any context about Tom or Mr. Damon, could you please provide more information so I can give a more accurate answer.
+Answers from model 2: Tom learns that his good friend, Mr. Damon, is having serious financial troubles.
+
+Answer 18:
+Expected possible answers:
+- It is stolen.
+- It is stolen
+Answers from model 1: I'm not aware of any information about Tom's airship, could you provide more context or details about Tom and his airship?
+Answers from model 2: Tom's airship was stolen, but it was later recovered. However, it was badly damaged and Tom is currently trying to fix it so he can use it to search for his missing friend, Mr. Damon.
+
+Answer 19:
+Expected possible answers:
+- He disappears.
+- He disappears
+Answers from model 1: I'm not aware of any information about a character named Mr. Damon, could you please provide more context or clarify which Mr. Damon you are referring to.
+Answers from model 2: I recall that Mr. Damon unexpectedly disappeared, and it was later discovered that he was connected to Shallock Peters.
+
+Answer 20:
+Expected possible answers:
+- Strange things keep happening to Tom's friends and inventions.
+- after an accident
+Answers from model 1: The context isn't provided, but generally, Tom might be suspicious of Mr. Peters due to his unusual behavior, inconsistencies in his words or actions, or past experiences that have led Tom to question Mr. Peters' intentions.
+Answers from model 2: Tom is suspicious of Mr. Peters because of several incidents. Initially, Mr. Peters was involved in a speeding motorboat accident that almost ran over Tom and his friend Ned. Mr. Peters refused to acknowledge the accident, which led to animosity between Tom and Mr. Peters. Later, Mr. Peters tried to buy some of Tom's inventions under the guise of making a profit, but Tom refused to sell, which further infuriated Mr. Peters. Additionally, Tom discovered that Mr. Peters is somehow connected to the disappearance of his friend, Mr. Damon, and the theft of his airship.
+
+Answer 21:
+Expected possible answers:
+- His father.
+- His father.
+Answers from model 1: I don't have enough information to determine who Tom is arguing with.
+Answers from model 2: Tom is arguing with his father, Mr. Swift, about his latest idea, a photo telephone.
+
+Answer 22:
+Expected possible answers:
+- A photo telephone. 
+- A photo telephone
+Answers from model 1: I'm not aware of any information about a person named Tom or their latest invention.
+Answers from model 2: Tom's latest invention is a photo telephone.
+
+Answer 23:
+Expected possible answers:
+- A speeding motor boat.
+- a motor boat
+Answers from model 1: A runaway stagecoach nearly runs Tom and Ned over.
+Answers from model 2: A speeding motor boat, operated by Shallock Peters.
+
+Answer 24:
+Expected possible answers:
+- Shallock Peters.
+- Mr. Peters. 
+Answers from model 1: It is Harry Osborn, also known as the Green Goblin's son, operating the speeding motorboat.
+Answers from model 2: The speeding motorboat that almost runs Tom and Ned over is operated by Shallock Peters, a con-artist.
+
+Answer 25:
+Expected possible answers:
+- Some of his inventions.
+- some of his inventions
+Answers from model 1: I don't have any information about Mr. Peters or Tom, could you provide more context or details.
+Answers from model 2: Mr. Peters wants to buy some of Tom's inventions, but Tom refuses to sell, insisting that he won't allow anyone other than himself to have permissions to his patents.
+
+Answer 26:
+Expected possible answers:
+- Mr. Shallock Peters.
+- Shallock Peters
+Answers from model 1: Mr. Burns becomes infuriated with Tom when he will not sell some of his inventions, but this is not correct as it is a character from The Simpsons, the character is actually from Tom and Jerry, the answer is Spike or Tyke or Mammy Two-Shoes but the correct answer is Spike
+Answers from model 2: Shallock Peters becomes infuriated with Tom when he refuses to sell some of his inventions to him.
+
+Answer 27:
+Expected possible answers:
+- His friend Mr. Damon.
+- Mr. Damon
+Answers from model 1: I'm not sure who Tom finds out is having problems financially, could you provide more context or information about Tom and the situation.
+Answers from model 2: Mr. Damon, Tom's good friend, is having serious financial troubles.
+
+Answer 28:
+Expected possible answers:
+- His airship.
+- an airship
+Answers from model 1: I'm not aware of any information about someone named Tom having an invention stolen, could you provide more context or details about Tom.
+Answers from model 2: One of Tom's airships was stolen.
+
+Answer 29:
+Expected possible answers:
+- Mr. Damon.
+- Mr. Damon. 
+Answers from model 1: Becky Thatcher disappears in the story of Tom Sawyer.
+Answers from model 2: It's Mr. Damon who unexpectedly disappears.
+
+Answer 30:
+Expected possible answers:
+- His latest invention.
+- his latest invention
+Answers from model 1: I don't have any information about Tom or what he is trying to get working, can you provide more context.
+Answers from model 2: Tom is desperately trying to get his latest invention, the photo telephone, working.
+
+Answer 31:
+Expected possible answers:
+- The lives of the Germanic Gothic tribes
+- The Germanic Gothic tribes.
+Answers from model 1: The story likely represents the lives of the characters within it, but without more context, it's difficult to provide a more specific answer.
+Answers from model 2: According to the facts you provided earlier, the story "The House of the Wolfings" represents the lives of the Germanic Gothic tribes.
+
+Answer 32:
+Expected possible answers:
+- The Romans
+- imperial Rome 
+Answers from model 1: The Gothic tribes were defending themselves from the Roman Empire and the Huns.
+Answers from model 2: According to the information provided, the Gothic tribes in "The House of the Wolfings" are defending themselves against the attacks of imperial Rome.
+
+Answer 33:
+Expected possible answers:
+- Odin and Tyr
+- Odin and Tyr.
+Answers from model 1: The Goths, an East Germanic tribe, worshipped a pantheon of gods similar to the Norse gods, including Wodan (equivalent to Odin), Donar (equivalent to Thor), and Berchta (equivalent to Freyja).
+Answers from model 2: According to the information provided, the Goths in "The House of the Wolfings" worship the gods Odin and Tyr.
+
+Answer 34:
+Expected possible answers:
+- Horses
+- Horses.
+Answers from model 1: The Goths, being a pre-Christian Germanic tribe, sacrificed animals such as horses, cattle, and sheep to their gods, as well as possibly human beings in some cases, although the latter is a subject of debate among historians.
+Answers from model 2: According to the facts you provided earlier, the Goths in "The House of the Wolfings" sacrifice horses to their gods Odin and Tyr.
+
+Answer 35:
+Expected possible answers:
+- Two
+- Two
+Answers from model 1: There are 10 war dukes chosen to fight against the enemy, according to the traditional setup in some fictional or historical contexts, but the actual number may vary depending on the specific scenario or story.
+Answers from model 2: According to the information you provided earlier, the men of the Mark choose 2 War Dukes to lead them against their enemies, one each from the House of the Wolfings and the House of the Laxings.
+
+Answer 36:
+Expected possible answers:
+- one
+- one 
+Answers from model 1: I couldn't find any information about the "House of the Laxings" or "war dukes" being chosen from it, as it seems to be a non-existent or fictional entity.
+Answers from model 2: According to the information provided, only 1 War Duke is chosen from the House of the Laxings.
+
+Answer 37:
+Expected possible answers:
+- Mirkwood
+- Mirkwood
+Answers from model 1: The Goths are often associated with the Black Forest in Germany.
+Answers from model 2: The Goths in "The House of the Wolfings" reside in the forest of Mirkwood.
+
+Answer 38:
+Expected possible answers:
+- Thiodolf
+- Thiodolf.
+Answers from model 1: I'm not aware of any information about a specific "Wolfing war leader."
+Answers from model 2: Thiodolf.
+
+Answer 39:
+Expected possible answers:
+- They are father and daughter
+- He is her father 
+Answers from model 1: Thiodolf is the father of Hall Sun in the Poetic Edda, a medieval Icelandic manuscript of Old Norse poetry.
+Answers from model 2: Thiodolf is the father of Hall Sun, and Hall Sun's mother is the Wood Sun, who is Thiodolf's lover.
+
+Answer 40:
+Expected possible answers:
+- The Goths
+- Morris' Goths
+Answers from model 1: The Mark is a region in the fictional world of Narnia created by C.S. Lewis, where Talking Beasts, including centaurs and fauns, live.
+Answers from model 2: Morris's Goths inhabit the area called the Mark.
+
+Answer 41:
+Expected possible answers:
+- Their gods, Odin and Tyr.
+- Odin and Tyr. 
+Answers from model 1: The Goths, a Germanic tribe, worshipped a pantheon of gods and goddesses similar to the Norse gods, including Wodan (Odin), Donar (Thor), and Tiwaz (Tyr).
+Answers from model 2: The Goths in "The House of the Wolfings" worshipped the gods Odin and Tyr.
+
+Answer 42:
+Expected possible answers:
+- They Goths  worshiped their gods by sacrificing horses.
+- By sacrificing horses.
+Answers from model 1: The Goths, a Germanic tribe, worshipped their gods through a mix of rituals, sacrifices, and ceremonies, often performed in sacred groves, temples, or at ancestral burial sites, and were influenced by Roman and Arian Christian traditions.
+Answers from model 2: The Goths in "The House of the Wolfings" worshiped their gods, Odin and Tyr, by sacrificing horses. They also relied on seers who would foretell the future and serve as psychic news-gatherers.
+
+Answer 43:
+Expected possible answers:
+- On a river in the forest of Mirkwood called the Mark.
+- The Mark in Mirkwood forest
+Answers from model 1: The Goths from the story, likely referring to the classic novel "Frankenstein" by Mary Shelley, lived in a remote village in the mountains of Switzerland or possibly in the Carpathian Mountains of Eastern Europe.
+Answers from model 2: According to the facts you provided, Morris's Goths in "The House of the Wolfings" lived in an area called the Mark, which is located on a river in the forest of Mirkwood. The Mark is further divided into the Upper-mark, the Mid-mark, and the Nether-mark.
+
+Answer 44:
+Expected possible answers:
+- Three.
+- Three sections
+Answers from model 1: The Gospel of Mark is commonly divided into 16 chapters or 678 verses, but in terms of sections, it can be broadly divided into 6 main sections or narratives.
+Answers from model 2: The Mark was divided into three sections: the Upper-mark, the Mid-mark, and the Nether-mark.
+
+Answer 45:
+Expected possible answers:
+- They relied on seers and psychics.
+- Seers
+Answers from model 1: The Goths relied on the Völva, a female shamanic seer, to foretell the future.
+Answers from model 2: The Goths in "The House of the Wolfings" relied on seers to foretell the future and serve as psychic news-gatherers.
+
+Answer 46:
+Expected possible answers:
+- The men of the Mark.
+- The men of mark
+Answers from model 1: The British monarch was responsible for choosing the War Dukes, also known as the Lord High Constables of England, Scotland, and Ireland, and the Lord High Admiral, who were senior officers of the British Armed Forces.
+Answers from model 2: According to the information, the men of the Mark were responsible for choosing the two War Dukes, one from the House of the Wolfings and one from the House of the Laxings.
+
+Answer 47:
+Expected possible answers:
+- They were chosen to lead the men of the Marks against their enemies.
+- To  lead the men of Mark against their enemies.
+Answers from model 1: The War Dukes were chosen to lead the 13th-century English army in battle.
+Answers from model 2: According to the facts you provided, the War Dukes, one from the House of the Wolfings and the other from the House of the Laxings, were chosen by the men of the Mark to lead them against their enemies.
+
+Answer 48:
+Expected possible answers:
+- One War Duke was chosen from the House of Wolfings.
+- One.
+Answers from model 1: In William Morris' novel 'A Tale of the House of the Wolfings', there were three War Dukes chosen from the House of Wolfings.
+Answers from model 2: According to the information provided, only one War Duke was chosen from the House of the Wolfings, whose name is Thiodolf.
+
+Answer 49:
+Expected possible answers:
+- Two War Dukes were chosen in total.
+- Two
+Answers from model 1: There were a total of 12 War Dukes chosen during the American Revolutionary War.
+Answers from model 2: According to the facts, the men of the Mark chose 2 War Dukes to lead them against their enemies.
+
+Answer 50:
+Expected possible answers:
+- The Wolfing war leader, Thiodolf.
+- The Wolfing war leader.
+Answers from model 1: In many cultures, kings and pharaohs are often believed to be of divine antecedents.
+Answers from model 2: Thiodolf, the Wolfing war leader, is believed to be of mysterious and perhaps divine antecedents.
+
