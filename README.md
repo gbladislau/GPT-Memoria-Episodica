@@ -82,5 +82,6 @@ To generate a qualitative prompt:
 python evaluate.py --gen_prompt
 ```
 
-### You can check our paper:
+## You can check our paper:
+The paper is available in this repository: [Paper Title](./Episodic_Memory_in_Large_Language_Models.pdf)
 
