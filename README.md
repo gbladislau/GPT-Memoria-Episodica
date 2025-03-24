@@ -23,8 +23,8 @@ The episodic memory system is built using **ChromaDB** as a database for storing
 
 ### 🧑‍💻 Clone the repository:
    ```bash
-   git clone <repository-url>
-   cd <repository-folder>
+   git clone git@github.com:gbladislau/LLM-Episodic-Memory.git
+   cd LLM-Episodic-Memory
    ```
 ### 🔧 Install dependencies in a Virtual Enviroment:
    ```bash
