@@ -20,27 +20,86 @@ The episodic memory system is built using **ChromaDB** as a database for storing
 - **NarrativeQA** – as an optional dataset for testing
 
 ## 🚀 How to Use
-1. **Clone the repository:**
+
+### 🧑‍💻 Clone the repository:
    ```bash
    git clone <repository-url>
    cd <repository-folder>
    ```
-2. **Install dependencies in a Virtual Enviroment:**
+### 🔧 Install dependencies in a Virtual Enviroment:
    ```bash
    python3 -m venv venv
    source venv/bin/activate
    pip install -r requirements.txt
    ```
-3. **Prepare your dataset:**
+### 🗂️ Prepare your dataset (for inference mode only):
    - You can use your own dataset or **NarrativeQA**.
-   - NarrativeQA is fully available on HuggingFaces at:
-     https://huggingface.co/datasets/deepmind/narrativeqa
-4. **Run the LLM with episodic memory:**
-   ```bash
-   python app.py
-   ```
+   - NarrativeQA is fully available on HuggingFace at [NarrativeQA](https://huggingface.co/datasets/deepmind/narrativeqa).
 
-### App Script
+### 🤖 Choose your model
+   - To use different models from HuggingFace you need to have all their dependencies previously installed.
+   - By default all of `hugging-quants/Meta-Llama-3.1-8B-Instruct-AWQ-INT4` dependencies are in our [requirements](./requirements.txt).
+   - For the SBERT models all of them under [Sentence Transformers](https://huggingface.co/sentence-transformers).
+
+### 🦙 Running the LLM
+
+The `app.py` script allows you to launch the LLM and interact with it, with or without the episodic memory module.
+
+In chat mode, you can exit by typing `exit`. If you want to exit without saving any data to the memory module, simply type `exit_quiet`.
+
+```text
+usage: app.py [-h] [-m MODEL] [-r REFLECTION_PROMPT] [--results RESULTS] [-e] [-v] [-s SBERT] [-i]
+
+Run the LLM and begin your conversation
+
+options:
+  -h, --help            show this help message and exit
+  -m MODEL, --model MODEL
+                        Model's Name
+  -r REFLECTION_PROMPT, --reflection_prompt REFLECTION_PROMPT
+                        Reflection Prompt Template
+  --results RESULTS     Results output path
+  -e, --episodic        Run the LLM with the episodic memory module
+  -v, --verbose         Verbose
+  -s SBERT, --sbert SBERT
+                        SBERT Model to evaluate the similarity scores
+  -i, --inference_mode  Use inference mode instead of chat mode
+```
+
+#### Arguments Explained:
+- `-m, --model`: Specifies the name of the model to be used.
+- `-r, --reflection_prompt`: Defines the reflection prompt template to be used.
+- `--results`: Specifies the file path where results should be saved.
+- `-e, --episodic`: Runs the LLM with the episodic memory module enabled.
+- `-v, --verbose`: Enables verbose mode for additional logging and debugging information.
+- `-s, --sbert`: Specifies the SBERT model to be used for evaluating similarity scores.
+- `-i, --inference_mode`: Runs the model in inference mode instead of interactive chat mode.
+
+#### Example Usage:
+To run the model in standard chat mode:
+```bash
+python app.py -m hugging-quants/Meta-Llama-3.1-8B-Instruct-AWQ-INT4
+```
+
+To run the model with episodic memory enabled:
+```bash
+python app.py -e -m hugging-quants/Meta-Llama-3.1-8B-Instruct-AWQ-INT4
+```
+
+To specify a reflection prompt template:
+```bash
+python app.py -r prompts/reflection_prompt_template.txt
+```
+
+To use a specific SBERT model for evaluation:
+```bash
+python app.py -s all-mpnet-base-v2
+```
+
+To save results to a specific file:
+```bash
+python app.py --results results/results.json
+```
 
 
 ### 📊 Evaluation Script
@@ -83,5 +142,5 @@ python evaluate.py --gen_prompt
 ```
 
 ## 📄 You can check our paper:
-The paper is available in this repository: [Paper Title](./Episodic_Memory_in_Large_Language_Models.pdf)
+The paper is available in this repository: [ Episodic Memory in Large Language Models](./Episodic_Memory_in_Large_Language_Models.pdf)
 
