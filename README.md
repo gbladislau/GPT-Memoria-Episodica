@@ -27,7 +27,7 @@ The episodic memory system is built using **ChromaDB** as a database for storing
    ```
 2. **Install dependencies in a Virtual Enviroment:**
    ```bash
-   python3 -m venv vevn
+   python3 -m venv venv
    source venv/bin/activate
    pip install -r requirements.txt
    ```
@@ -39,7 +39,10 @@ The episodic memory system is built using **ChromaDB** as a database for storing
    ```bash
    python app.py
    ```
-   
+
+### App Script
+
+
 ### 📊 Evaluation Script
 The evaluation script (`evaluate.py`) includes several command-line options:
 
